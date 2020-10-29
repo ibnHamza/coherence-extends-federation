@@ -1,0 +1,1 @@
+# coherence-hibernate-demo
