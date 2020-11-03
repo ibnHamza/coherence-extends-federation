@@ -1,5 +1,7 @@
 # Coherence Hibernate Demo
 
+![Java CI with Maven](https://github.com/ghillert/coherence-hibernate-demo/workflows/Java%20CI%20with%20Maven/badge.svg?branch=main) [![License](http://img.shields.io/badge/license-UPL%201.0-blue.svg)](https://oss.oracle.com/licenses/upl/)
+
 In this demo we are adding Hibernate Second Level Caching to a simple Spring Boot
 application using the [Coherence Hibernate project](https://github.com/coherence-community/coherence-hibernate).
 
