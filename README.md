@@ -2,11 +2,22 @@
 
 ![Java CI with Maven](https://github.com/ghillert/coherence-hibernate-demo/workflows/Java%20CI%20with%20Maven/badge.svg?branch=main) [![License](http://img.shields.io/badge/license-UPL%201.0-blue.svg)](https://oss.oracle.com/licenses/upl/)
 
-In this demo we are adding Hibernate Second Level Caching to a simple Spring Boot
-application using the [Coherence Hibernate project](https://github.com/coherence-community/coherence-hibernate).
+## Overview
 
-As part of the demo, we can create and query for `Events`. Furthermore, we can
+In this demo we are adding Hibernate Second Level Caching to a simple Spring Boot
+application using the [Coherence Hibernate project](https://github.com/coherence-community/coherence-hibernate). As part of the demo, we can create and query for `Events`. Furthermore, we can
 add `People` and each `Person` can be added to an event.
+
+The demo is split into multiple Maven modules in order to show-case 2 use-cases:
+
+- Embedded Coherence
+- Use a remote Coherence cache using [Coherence*Extend](https://docs.oracle.com/en/middleware/standalone/coherence/14.1.1.0/develop-remote-clients/introduction-coherenceextend.html)
+
+The Maven Project is structured as follows:
+
+- **coherence-hibernate-demo-app** Main entry point for the demo
+- **coherence-hibernate-demo-server** Remote Coherence server
+- **coherence-hibernate-demo-core** Used to share serialization bits between local app and remote Coherence server
 
 ## How to Run
 
@@ -23,11 +34,31 @@ Build the demo using [Maven](https://maven.apache.org/):
 ./mvnw clean package
 ```
 
+## Run the embedded Coherence demo
+
 Run the demo:
 
 ```bash
-java -jar target/coherence-hibernate-demo-1.0.0-SNAPSHOT.jar
+java -jar coherence-hibernate-demo-app/target/coherence-hibernate-demo-app-1.0.0-SNAPSHOT.jar
 ```
+
+## Run the remote Coherence demo
+
+First, start the remote Coherence server:
+
+```bash
+java -jar coherence-hibernate-demo-server/target/coherence-hibernate-demo-server-1.0.0-SNAPSHOT.jar
+```
+
+Next, start the demo:
+
+```bash
+java -jar coherence-hibernate-demo-app/target/coherence-hibernate-demo-app-1.0.0-SNAPSHOT.jar --spring.profiles.active=remote
+```
+
+We will use the exact same application as used for the embedded Coherence demo. However by activating the `remote` Spring Boot profile using `--spring.profiles.active=remote`, we use a different chache config file `remote-hibernate-second-level-cache-config.xml` defined in `application-remote.yml`.
+
+## Execute the REST enpoints
 
 Once started the embedded database is empty. Let's create an event and 2 people:
 
@@ -63,7 +94,7 @@ You can also see statistics at `http://localhost:8080/api/statistics`.
 
 ## More Details
 
-The Spring Boot application was created via https://start.spring.io.
+The Spring Boot application was created via https://start.spring.io. This is generally a good starting if you new to Spring Boot:
 
 ```bash
 wget https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.4.0.M4&packaging=jar&jvmVersion=11&groupId=com.oracle.coherence.hibernate&artifactId=spring-demo&name=spring-demo&description=Demo%20project%20for%20Coherence%20Hibernate&packageName=com.oracle.coherence.hibernate.demo&dependencies=data-jpa,web,hsql
@@ -78,7 +109,7 @@ We have added 2 domain objects to the application:
 
 ### Add Required Dependencies
 
-First, please add the respective dependency to your `pom.xml`. In our case, we are using Hibernate version `5.2.17.Final`. Thefore, the dependency to add is:
+First, please add the respective dependency to your `pom.xml`. In our case, we are using Hibernate version `5.2.17.Final`. Therefore, the dependency to add is:
 
 ```xml
 <dependency>
@@ -100,7 +131,10 @@ You will also need to add a specific version of Coherence, e.g.:
 
 ### Configure Coherence
 
-The Coherence caches and mappings are defined in `test-hibernate-second-level-cache-config.xml`.
+The Coherence caches and mappings are defined in
+
+- `hibernate-second-level-cache-config.xml` (Embedded Coherence)
+- `remote-hibernate-second-level-cache-config.xml` (Remote Coherence)
 
 ### Configure Hibernate
 
@@ -125,10 +159,18 @@ spring:
           com.oracle.coherence.hibernate.cache.cache_config_file_path: test-hibernate-second-level-cache-config.xml
 ```
 
+In order to support the remote Coherence cache server use-case, we have also added a profile-specific yaml file that only is active when the `remote` profile is activated - `application-Remote.yml`:
+
+```yaml
+spring:
+  jpa:
+    properties:
+      com.oracle.coherence.hibernate.cache.cache_config_file_path: remote-hibernate-second-level-cache-config.xml
+```
+
 ### Configure Domain Classes
 
-By default, your entity/model/domain objects are not cached. In order to make them
-cacheable, we will use the `@Cache` annotation:
+By default, your entity/model/domain objects are not cached. In order to make them cacheable, we will use the `@Cache` annotation:
 
 ```java
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
