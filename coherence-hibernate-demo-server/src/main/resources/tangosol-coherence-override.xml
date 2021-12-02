@@ -10,4 +10,14 @@
 			<class-name>com.oracle.coherence.hibernate.demo.identity.ServerSideIdentityAsserter</class-name>
 		</identity-asserter>
 	</security-config> -->
+	<!-- <cluster-config>
+      
+      
+        
+        <unicast-listener>
+            <address>127.0.0.1</address>
+            
+        </unicast-listener>
+        
+   </cluster-config> -->
 </coherence>

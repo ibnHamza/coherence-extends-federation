@@ -10,4 +10,17 @@
 			<class-name>com.oracle.coherence.hibernate.demo.identity.ClientSideIdentityTransformer</class-name>
 		</identity-transformer>
 	</security-config> -->
+	<!-- <cluster-config>
+        
+        <multicast-listener>
+            <time-to-live>0</time-to-live>
+            
+        </multicast-listener>
+        
+        <unicast-listener>
+            <address>127.0.0.1</address>
+            
+        </unicast-listener>
+        
+   </cluster-config> -->
 </coherence>
