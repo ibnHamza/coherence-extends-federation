@@ -57,11 +57,11 @@
 				<artifactId>coherence-hibernate-cache-52</artifactId>
 				<version>${coherence-hibernate-cache-52.version}</version>
 			</dependency>
-			<dependency>
+			<!-- <dependency>
 				<groupId>com.oracle.coherence.ce</groupId>
 				<artifactId>coherence</artifactId>
 				<version>${coherence.version}</version>
-			</dependency>
+			</dependency> -->
 		</dependencies>
 	</dependencyManagement>
 

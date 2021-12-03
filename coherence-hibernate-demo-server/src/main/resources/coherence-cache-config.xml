@@ -41,6 +41,14 @@ meaningful to other cache configurations unless similarly defined there.
       <cache-name>*</cache-name>
       <scheme-name>remote</scheme-name>
     </cache-mapping>
+    
+    
+    <cache-mapping>
+      <cache-name>dist-extend</cache-name>
+      <scheme-name>remote</scheme-name>
+    </cache-mapping>
+    
+    
   </caching-scheme-mapping>
 
   <!-- <topic-scheme-mapping>
