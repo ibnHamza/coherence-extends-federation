@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.oracle.coherence.hibernate.demo.configuration.EventMixin;
 import com.oracle.coherence.hibernate.demo.model.Event;
+import com.tangosol.net.CacheFactory;
+import com.tangosol.net.NamedCache;
 
 /**
  *
@@ -21,6 +23,8 @@ import com.oracle.coherence.hibernate.demo.model.Event;
  */
 @SpringBootApplication
 public class CoherenceHibernateDemoApplication {
+	  private  NamedCache cache  = CacheFactory.getCache("dist-extend");
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(CoherenceHibernateDemoApplication.class, args);
