@@ -2,6 +2,37 @@
 <coherence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://xmlns.oracle.com/coherence/coherence-operational-config"
 	xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-operational-config coherence-operational-config.xsd">
+	<federation-config>
+<participants>
+<participant>
+<name>LocalClusterA</name>
+<remote-addresses>
+<socket-address>
+<address>127.0.0.1</address>
+<port>7574</port>
+</socket-address>
+</remote-addresses>
+</participant>
+<participant>
+<name>RemoteClusterB</name>
+<remote-addresses>
+<socket-address>
+<address>127.0.0.1</address>
+<port>9001</port>
+</socket-address>
+</remote-addresses>
+</participant>
+<participant>
+<name>RemoteClusterC</name>
+<remote-addresses>
+<socket-address>
+<address>127.0.0.1</address>
+<port>9002</port>
+</socket-address>
+</remote-addresses>
+</participant>
+</participants>
+</federation-config>
 	<logging-config>
 		<destination>slf4j</destination>
 	</logging-config>
