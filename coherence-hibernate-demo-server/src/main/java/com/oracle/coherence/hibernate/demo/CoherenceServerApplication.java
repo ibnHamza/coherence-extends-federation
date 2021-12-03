@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.tangosol.net.CacheFactory;
+import com.tangosol.net.CacheFactoryBuilder;
 import com.tangosol.net.NamedCache;
 /*
 import com.tangosol.net.Coherence;
@@ -20,6 +21,7 @@ import com.tangosol.net.CoherenceConfiguration;
 import com.tangosol.net.NamedMap;
 import com.tangosol.net.SessionConfiguration;*/
 
+import com.tangosol.net.DefaultCacheServer;
 /**
  *
  * @author Gunnar Hillert
@@ -28,10 +30,15 @@ import com.tangosol.net.SessionConfiguration;*/
 @SpringBootApplication
 public class CoherenceServerApplication {
 
-  private  NamedCache cache  = CacheFactory.getCache("dist-extend");
+	
+  //private  NamedCache cache  = CacheFactory.getCache("dist-extend");
+ // DefaultCacheServer cachDefServer = new DefaultCacheServer(null);
+  //CacheFactoryBuilder
+  // CacheFactory.getCacheFactoryBuilder().getConfigurableCacheFactory();
     
 	public static void main(String[] args) {
 		SpringApplication.run(CoherenceServerApplication.class, args);
+		DefaultCacheServer.main(args);
 	}
 
 	/*
