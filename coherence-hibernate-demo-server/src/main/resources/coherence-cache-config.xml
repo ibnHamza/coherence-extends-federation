@@ -70,29 +70,29 @@
 
 		<federated-scheme>
 			<scheme-name>remote</scheme-name>
-			<!-- The federated caches on all participants must be managed by the same federated
-service instance. The service is specified using the <service-name> element. -->
+			<!-- The federated caches on all participants must be managed by the same 
+				federated service instance. The service is specified using the <service-name> 
+				element. -->
 			<service-name>federated</service-name>
 			<backing-map-scheme>
 				<local-scheme />
 			</backing-map-scheme>
 			<autostart>true</autostart>
-			
-			<!-- The federation service relies on an internal cache and journal to hold entries during
-federation. The internal cache can consume all the available resources on a cluster
-node depending on the memory limit, amount and size of the entries being federated.
-Chapter 7
-Overriding the Destination Cache
-7-12
-This can in turn adversely affect all clusters in the federation. To guard against such
-scenarios, the internal cache can be configured to limit the size of the internal cache. Once
-the limit is reached, the federation service moves the destination participants to ERROR state
-and removes all pending entries from federation's internal backlog cache -->
+
+			<!-- The federation service relies on an internal cache and journal to 
+				hold entries during federation. The internal cache can consume all the available 
+				resources on a cluster node depending on the memory limit, amount and size 
+				of the entries being federated. Chapter 7 Overriding the Destination Cache 
+				7-12 This can in turn adversely affect all clusters in the federation. To 
+				guard against such scenarios, the internal cache can be configured to limit 
+				the size of the internal cache. Once the limit is reached, the federation 
+				service moves the destination participants to ERROR state and removes all 
+				pending entries from federation's internal backlog cache -->
 			<journalcache-highunits>2G</journalcache-highunits>
-			
-			<!-- If no topology is defined (all participants are assumed to be in an active-active
-topology) or if only one topology is defined, then a topology name does not need to
-be specified in a federated scheme definition. -->
+
+			<!-- If no topology is defined (all participants are assumed to be in 
+				an active-active topology) or if only one topology is defined, then a topology 
+				name does not need to be specified in a federated scheme definition. -->
 			<topologies>
 				<topology>
 					<name>MyTopology</name>
@@ -115,6 +115,16 @@ be specified in a federated scheme definition. -->
 		<!-- custom named proxy service added -->
 		<proxy-scheme>
 			<service-name>ExtendTcpCacheService</service-name>
+			<acceptor-config>
+				<tcp-acceptor>
+					<address-provider>
+						<local-address>
+							<address>127.0.0.1</address>
+							<port>7574</port>
+						</local-address>
+					</address-provider>
+				</tcp-acceptor>
+			</acceptor-config>
 			<autostart>true</autostart>
 		</proxy-scheme>
 	</caching-schemes>

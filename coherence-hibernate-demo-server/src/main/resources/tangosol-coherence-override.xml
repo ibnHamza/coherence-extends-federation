@@ -39,7 +39,7 @@
 					</socket-address>
 				</remote-addresses>
 			</participant>
-			<participant>
+		<!-- 	<participant>
 				<name>RemoteClusterC</name>
 				<remote-addresses>
 					<socket-address>
@@ -47,7 +47,7 @@
 						<port>9002</port>
 					</socket-address>
 				</remote-addresses>
-			</participant>
+			</participant> -->
 		</participants>
 
 		<topology-definitions>
@@ -55,7 +55,7 @@
 				<name>MyTopology</name>
 				<active>LocalClusterA</active>
 				<active>RemoteClusterB</active>
-				<active>RemoteClusterC</active>
+				<!-- <active>RemoteClusterC</active> -->
 			</active-active>
 		</topology-definitions>
 		

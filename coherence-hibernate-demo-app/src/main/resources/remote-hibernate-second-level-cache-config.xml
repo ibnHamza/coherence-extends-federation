@@ -41,7 +41,7 @@
                     <name-service-addresses>
                         <socket-address>
                             <address>127.0.0.1</address>
-                            <port>7574</port>
+                            <port>9001</port>
                         </socket-address>
                     </name-service-addresses>
                 </tcp-initiator>

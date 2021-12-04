@@ -8,7 +8,7 @@
 	<cluster-config>
      
      <member-identity>
-         <cluster-name system-property="tangosol.coherence.cluster">LocalClusterA</cluster-name>
+         <cluster-name system-property="tangosol.coherence.cluster">RemoteClusterB</cluster-name>
         <!--  <member-name system-property="tangosol.coherence.member1">LocalClusterA</member-name>
          <member-name system-property="tangosol.coherence.member2">RemoteClusterB</member-name>
          <member-name system-property="tangosol.coherence.member3">RemoteClusterC</member-name> -->
