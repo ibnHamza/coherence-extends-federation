@@ -2,9 +2,22 @@
 <coherence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://xmlns.oracle.com/coherence/coherence-operational-config"
 	xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-operational-config coherence-operational-config.xsd">
-	<logging-config>
+	<!-- <logging-config>
 		<destination>slf4j</destination>
-	</logging-config>
+	</logging-config> -->
+	<cluster-config>
+     
+     <member-identity>
+         <cluster-name system-property="tangosol.coherence.cluster">LocalClusterA</cluster-name>
+        <!--  <member-name system-property="tangosol.coherence.member1">LocalClusterA</member-name>
+         <member-name system-property="tangosol.coherence.member2">RemoteClusterB</member-name>
+         <member-name system-property="tangosol.coherence.member3">RemoteClusterC</member-name> -->
+      </member-identity>
+      <!--    <cluster-name system-property="coherence.cluster">MyCluster</cluster-name> -->
+<!--          <member-name system-property="coherence.member">C1</member-name>
+ -->      
+   </cluster-config>
+	
 <!-- 	<security-config>
 		<identity-transformer>
 			<class-name>com.oracle.coherence.hibernate.demo.identity.ClientSideIdentityTransformer</class-name>
