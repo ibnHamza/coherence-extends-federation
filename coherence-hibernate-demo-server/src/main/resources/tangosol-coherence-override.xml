@@ -1,54 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coherence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<coherence
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://xmlns.oracle.com/coherence/coherence-operational-config"
 	xsi:schemaLocation="http://xmlns.oracle.com/coherence/coherence-operational-config coherence-operational-config.xsd">
+	
+	
+	<cluster-config>
+     
+     <member-identity>
+         <cluster-name system-property="tangosol.coherence.cluster">LocalClusterA</cluster-name>
+        <!--  <member-name system-property="tangosol.coherence.member1">LocalClusterA</member-name>
+         <member-name system-property="tangosol.coherence.member2">RemoteClusterB</member-name>
+         <member-name system-property="tangosol.coherence.member3">RemoteClusterC</member-name> -->
+      </member-identity>
+      <!--    <cluster-name system-property="coherence.cluster">MyCluster</cluster-name> -->
+<!--          <member-name system-property="coherence.member">C1</member-name>
+ -->      
+   </cluster-config>
+	
 	<federation-config>
-<participants>
-<participant>
-<name>LocalClusterA</name>
-<remote-addresses>
-<socket-address>
-<address>127.0.0.1</address>
-<port>7574</port>
-</socket-address>
-</remote-addresses>
-</participant>
-<participant>
-<name>RemoteClusterB</name>
-<remote-addresses>
-<socket-address>
-<address>127.0.0.1</address>
-<port>9001</port>
-</socket-address>
-</remote-addresses>
-</participant>
-<participant>
-<name>RemoteClusterC</name>
-<remote-addresses>
-<socket-address>
-<address>127.0.0.1</address>
-<port>9002</port>
-</socket-address>
-</remote-addresses>
-</participant>
-</participants>
-</federation-config>
-	<logging-config>
+	
+		<participants>
+			<participant>
+				<name>LocalClusterA</name>
+				<remote-addresses>
+					<socket-address>
+						<address>127.0.0.1</address>
+						<port>7574</port>
+					</socket-address>
+				</remote-addresses>
+			</participant>
+			<participant>
+				<name>RemoteClusterB</name>
+				<remote-addresses>
+					<socket-address>
+						<address>127.0.0.1</address>
+						<port>9001</port>
+					</socket-address>
+				</remote-addresses>
+			</participant>
+			<participant>
+				<name>RemoteClusterC</name>
+				<remote-addresses>
+					<socket-address>
+						<address>127.0.0.1</address>
+						<port>9002</port>
+					</socket-address>
+				</remote-addresses>
+			</participant>
+		</participants>
+
+		<topology-definitions>
+			<active-active>
+				<name>MyTopology</name>
+				<active>LocalClusterA</active>
+				<active>RemoteClusterB</active>
+				<active>RemoteClusterC</active>
+			</active-active>
+		</topology-definitions>
+		
+<!-- <logging-config>
 		<destination>slf4j</destination>
-	</logging-config>
-<!-- 	<security-config>
-		<identity-asserter>
-			<class-name>com.oracle.coherence.hibernate.demo.identity.ServerSideIdentityAsserter</class-name>
-		</identity-asserter>
-	</security-config> -->
-	<!-- <cluster-config>
-      
-      
-        
-        <unicast-listener>
-            <address>127.0.0.1</address>
-            
-        </unicast-listener>
-        
-   </cluster-config> -->
+	</logging-config> -->
+	
+	</federation-config>
+
+
+	
+	<!-- <security-config> <identity-asserter> <class-name>com.oracle.coherence.hibernate.demo.identity.ServerSideIdentityAsserter</class-name> 
+		</identity-asserter> </security-config> -->
+	<!-- <cluster-config> <unicast-listener> <address>127.0.0.1</address> </unicast-listener> 
+		</cluster-config> -->
 </coherence>
